@@ -356,6 +356,10 @@ const server = http.createServer(async (req, res) => {
       if (!isLocal(req)) return sendJson(res, { ok: false }, 403);
       return sendJson(res, { ok: ai.saveKey((await readBody(req))?.key) });
     }
+    if (url.pathname === '/api/ai/license' && req.method === 'POST') {
+      if (!isLocal(req)) return sendJson(res, { ok: false }, 403);
+      return sendJson(res, await ai.saveLicense((await readBody(req))?.key));
+    }
     if (url.pathname === '/api/ai/rescan' && req.method === 'POST') {
       ai.rescan();
       return sendJson(res, { ok: true });

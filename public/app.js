@@ -758,9 +758,12 @@ function renderAI(d) {
   const title = '<h2>⚔️ دشمن‌ها و آیتم ضد <span class="tag">هوش مصنوعی</span></h2>';
   if (!ai.enabled) {
     return setHTML(el, `${title}
-      <p class="muted">برای اینکه مربی دشمن‌ها رو بشناسه و آیتم ضدشون رو بگه، کلید OpenRouter لازمه.</p>
+      <p class="muted">مربی می‌تونه دشمن‌ها رو بشناسه و آیتم ضدشون رو بگه. یکی از این دو تا رو وارد کن:</p>
+      <h3 class="nh">⭐ لایسنس Pro</h3>
+      <div class="keyrow"><input id="aiLicense" type="text" placeholder="FC-XXXX-XXXX-XXXX-XXXX" autocomplete="off" dir="ltr"><button data-act="ai-license">فعال کن</button></div>
+      <h3 class="nh">🔑 یا کلید OpenRouter خودت <span class="muted">(خرجش با خودت)</span></h3>
       <div class="keyrow"><input id="aiKey" type="password" placeholder="sk-or-..." autocomplete="off" dir="ltr"><button data-act="ai-key">ذخیره</button></div>
-      <p class="muted">کلید فقط روی همین کامپیوتر می‌مونه (فایل secrets.json).</p>`);
+      <p class="muted">هر دو فقط روی همین کامپیوتر می‌مونن (فایل secrets.json).</p>`);
   }
   const hero = (id) => S.consts?.heroes?.[id];
   const portrait = (id) => (hero(id)?.img ? `<img class="ep" src="${esc(hero(id).img)}" alt="" title="${esc(hero(id).localized_name)}">` : '');
@@ -783,7 +786,19 @@ function renderAI(d) {
       <li>${portrait(t.heroId)}<div><b>${esc(t.hero)}</b><div class="why">${esc(t.why)}</div></div></li>`).join('')}</ul>` : ''}
     ${an?.tip ? `<p class="aitip">💡 ${esc(an.tip)}</p>` : ''}
     ${ai.status !== 'ready' ? `<p class="muted">${esc(status)}</p>` : ''}
-    <div class="aifoot"><span class="muted" dir="ltr">AI cost this match: $${(ai.cost || 0).toFixed(4)}</span><button data-act="ai-rescan">🔄 دوباره اسکن کن</button></div>`);
+    <div class="aifoot">${aiPlanLine(ai)}<button data-act="ai-rescan">🔄 دوباره اسکن کن</button></div>
+    ${ai.mode === 'byok' ? `<details class="prorow"><summary>⭐ لایسنس Pro داری؟</summary>
+      <div class="keyrow"><input id="aiLicense" type="text" placeholder="FC-XXXX-XXXX-XXXX-XXXX" autocomplete="off" dir="ltr"><button data-act="ai-license">فعال کن</button></div></details>` : ''}`);
+}
+
+// Pro: plan + share of this month's AI allowance used. Own key: what this match cost.
+function aiPlanLine(ai) {
+  if (ai.mode === 'pro') {
+    const p = ai.pro || {};
+    const pct = p.budgetUsd ? Math.min(100, Math.round((100 * (p.spentUsd || 0)) / p.budgetUsd)) : null;
+    return `<span class="muted">⭐ Pro${pct != null ? ` — مصرف این ماه: ${faNum(pct)}٪` : ''}</span>`;
+  }
+  return `<span class="muted" dir="ltr">AI cost this match: $${(ai.cost || 0).toFixed(4)}</span>`;
 }
 
 // Best picks for the craft window: artifact (left column) and enchantment (right column).
@@ -1044,6 +1059,10 @@ document.addEventListener('click', async (e) => {
   else if (act === 'ai-key') {
     const r = await getJson('/api/ai/key', { method: 'POST', body: JSON.stringify({ key: $('#aiKey')?.value }) }).catch(() => ({ ok: false }));
     btn.textContent = r.ok ? '✓ ذخیره شد' : '✗ کلید درست نیست';
+  } else if (act === 'ai-license') {
+    btn.textContent = '…';
+    const r = await getJson('/api/ai/license', { method: 'POST', body: JSON.stringify({ key: $('#aiLicense')?.value }) }).catch(() => ({ ok: false }));
+    btn.textContent = r.ok ? '✓ فعال شد' : `✗ ${r.error || 'خطا'}`;
   } else if (act === 'ai-rescan') fetch('/api/ai/rescan', { method: 'POST' }).catch(() => {});
   else if (act === 'copy') { try { await navigator.clipboard.writeText('-gamestateintegration'); btn.textContent = '✓ کپی شد'; } catch {} }
   else if (act === 'demo-on' || act === 'demo-off') { try { await getJson(`/api/demo?on=${act === 'demo-on' ? 1 : 0}`, { method: 'POST' }); } catch {} }

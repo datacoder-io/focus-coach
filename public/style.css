@@ -248,6 +248,8 @@ body.overlay .mini:empty { display: none; }
 .keyrow { display: flex; gap: 8px; margin: 10px 0; }
 .keyrow input { flex: 1; min-width: 0; font: inherit; color: var(--text); background: var(--panel2); border: 1px solid var(--line); border-radius: 10px; padding: 6px 10px; }
 .mini .c2.best.ai { border-color: var(--red); background: #3a1517; }
+.prorow { margin-top: 10px; }
+.prorow summary { cursor: pointer; color: var(--muted); }
 .mini .c2.buy { border-color: var(--green); background: #133a24; }
 .nextskill { display: flex; align-items: center; gap: 8px; margin-top: 10px; padding: 6px 10px; border-radius: 10px; background: var(--panel2); flex-wrap: wrap; }
 .nextskill img { width: 30px; height: 30px; border-radius: 6px; }

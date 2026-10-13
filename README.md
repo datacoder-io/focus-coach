@@ -42,7 +42,9 @@ The full dashboard and settings are at `http://localhost:3005`; on a phone on th
 
 ## AI counters (optional)
 
-Copy `secrets.example.json` to `secrets.json` and put your OpenRouter key in it, or paste the key into the dashboard. Defaults: `anthropic/claude-sonnet-5.5` for reading hero portraits (once per match) and `anthropic/claude-haiku-5.5` for the analysis; both can be changed in `secrets.json`. Set a spending limit on your OpenRouter account.
+**Pro:** enter a Focus Coach license (`FC-XXXX-XXXX-XXXX-XXXX`) in the dashboard — no API key needed; requests go to the Focus Coach server.
+
+**Own key:** copy `secrets.example.json` to `secrets.json` and put your OpenRouter key in it, or paste the key into the dashboard. Defaults: `anthropic/claude-sonnet-5.5` for reading hero portraits (once per match) and `anthropic/claude-haiku-5.5` for the analysis; both can be changed in `secrets.json`. Set a spending limit on your OpenRouter account.
 
 `secrets.json` is git-ignored — never commit it.
 
