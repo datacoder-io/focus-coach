@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dota Coach</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="conn" id="conn"><span class="dot"></span><span id="connText">در حال اتصال…</span></div>
+    <div class="clock" id="clock" dir="ltr">--:--</div>
+    <div class="score" id="score"></div>
+    <div class="btns">
+      <button id="btnVoice" data-act="voice" title="صدا روشن/خاموش">🔊</button>
+      <button id="btnSimple" data-act="simple" title="حالت خیلی ساده">🧘</button>
+      <button data-act="settings" title="تنظیمات">⚙️</button>
+    </div>
+  </header>
+
+  <div id="demoBar" class="demobar" hidden>👀 حالت دمو — این اطلاعات واقعی نیست <button data-act="demo-off">توقف دمو</button></div>
+  <button id="unlock" class="unlock" data-act="unlock" hidden>🔊 یه بار اینجا کلیک کن تا صدای مربی فعال بشه</button>
+
+  <main>
+    <section id="onboard" class="card onboard" hidden></section>
+    <section id="action" class="action idle"></section>
+    <section id="mini" class="mini"></section>
+
+    <div class="grid">
+      <div class="col">
+        <section id="hero" class="card" hidden></section>
+        <section id="items" class="card detail" hidden></section>
+        <section id="build" class="card detail" hidden></section>
+      </div>
+      <div class="col detail">
+        <section id="ai" class="card" hidden></section>
+        <section id="neutral" class="card" hidden></section>
+        <section id="timers" class="card" hidden></section>
+        <section id="log" class="card" hidden></section>
+      </div>
+    </div>
+  </main>
+
+  <dialog id="settings"></dialog>
+
+  <script src="neutrals.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

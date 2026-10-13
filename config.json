@@ -1,0 +1,14 @@
+{
+  "port": 3005,
+  "token": "adhd-dota-coach",
+  "dotaPath": "",
+  "itemUnlocks": { "aghanims_shard": 1200 },
+  "timers": [
+    { "id": "water",     "fa": "رون آب (رودخانه)",   "times": [120, 240],       "warn": 15, "on": true,  "sayFa": "رون آب، {s} ثانیه دیگه میاد",     "say": "Water rune in {s} seconds" },
+    { "id": "bounty",    "fa": "رون بانتی (طلا)",     "first": 0,   "every": 240, "warn": 15, "on": true,  "sayFa": "رون بانتی، {s} ثانیه دیگه میاد",   "say": "Bounty runes in {s} seconds" },
+    { "id": "power",     "fa": "رون قدرت (رودخانه)",  "first": 360, "every": 120, "warn": 15, "on": true,  "sayFa": "رون قدرت، {s} ثانیه دیگه میاد",    "say": "Power rune in {s} seconds" },
+    { "id": "wisdom",    "fa": "معبد ویزدام (تجربه)", "first": 420, "every": 420, "warn": 20, "on": true,  "sayFa": "معبد ویزدام، {s} ثانیه دیگه فعال می‌شه", "say": "Wisdom shrine in {s} seconds" },
+    { "id": "tormentor", "fa": "تورمنتور",            "times": [1200],           "warn": 30, "on": true,  "sayFa": "تورمنتور، {s} ثانیه دیگه میاد",    "say": "Tormentor spawns in {s} seconds" },
+    { "id": "stack",     "fa": "استک کمپ جنگل",       "first": 53,  "every": 60,  "warn": 2,  "on": false, "sayFa": "الان کمپ رو استک کن",              "say": "Stack the camp" }
+  ]
+}

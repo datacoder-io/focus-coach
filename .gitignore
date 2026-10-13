@@ -1,0 +1,8 @@
+# Your API keys — never commit
+secrets.json
+
+# Downloaded data, screenshots, local settings and the overlay's browser profile
+cache/
+
+node_modules/
+*.log

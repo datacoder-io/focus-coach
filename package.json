@@ -1,0 +1,17 @@
+{
+  "name": "focus-coach",
+  "version": "0.1.0",
+  "description": "Live, focus-friendly coach for Dota 2: one instruction at a time, click-through overlay, voice, optional AI counter items.",
+  "license": "MIT",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js --open",
+    "demo": "node server.js --open --demo"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "os": [
+    "win32"
+  ]
+}
